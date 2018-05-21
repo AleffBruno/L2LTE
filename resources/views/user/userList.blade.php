@@ -3,7 +3,7 @@
 @section('title', 'Lineage2')
 
 @section('content_header')
-    <h1>Users</h1>
+    <h1>Users List</h1>
 @stop
 
 @section('content')
@@ -15,14 +15,12 @@
             </tr>
         </thead>
         <tbody>
+        @foreach($users as $user)
             <tr>
-                <th>1</th>
-                <th>Aleff</th>
+                <th>{{$user->id}}</th>
+                <th>{{$user->name}}</th>
             </tr>
-            <tr>
-                <th>2</th>
-                <th>Jose</th>
-            </tr>
+        @endforeach
         </tbody>
     </table>
 @stop

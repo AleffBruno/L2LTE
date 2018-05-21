@@ -11,15 +11,25 @@
 |
 */
 
+
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('user/list', 'UserController@index')->name('user.list');
+});
+
+Route::post('user/store','UserController@store')->name('user.store');
+Route::post('user/login','UserController@login')->name('user.login');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('teste',function(){
+Route::get('/teste',function(){
     return view('teste');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
