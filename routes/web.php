@@ -15,7 +15,13 @@
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('user/list', 'UserController@index')->name('user.list');
+
+    Route::get('user/list', 'UserController@list')->name('user.list');
+    Route::get('user/delete/{id}', 'UserController@delete')->name('user.delete');
+    Route::get('user/update/{id}', 'UserController@update')->name('user.update');
+    Route::post('user/update/{id}', 'UserController@updateStore')->name('user.update.store');
+
+    
 });
 
 Route::post('user/store','UserController@store')->name('user.store');

@@ -7,22 +7,5 @@
 @stop
 
 @section('content')
-    <table id="usersTable" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>1</th>
-                <th>Aleff</th>
-            </tr>
-            <tr>
-                <th>2</th>
-                <th>Jose</th>
-            </tr>
-        </tbody>
-    </table>
+    E.G : HOME
 @stop

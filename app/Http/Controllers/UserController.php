@@ -8,6 +8,12 @@ use Auth;
 
 class UserController extends Controller
 {
+	/* protected $user;
+	public function __costruct(User $user)
+	{
+		$this->user = $user;
+	} */
+
     public function login(Request $request)
     {
         $user = User::where('email', $request['email'])
@@ -21,25 +27,12 @@ class UserController extends Controller
 					 )
 			);
 		}
-		
+		// perhaps needs study "guard"
 		Auth::login($user);
-		//return redirect()->route('home');
 		return redirect()->route('user.list');
     }
-
-    public function store(Request $request)
-    {
-        $user = new User();
-		$this->validate($request, User::$rules);
-		//$request['password'] = Hash::make($request['password']);
-		$request['password'] = User::hashPassword($request['password']);
-		$user->create($request->all());
-        // este cara ainda nao esta autenticado
-        return "autentique esse cara e leve-o para a tela principal";
-		//return redirect()->route('eloquent.user.list');
-	}
 	
-	public function index()
+	public function list()
 	{
 		// ATENTE-SE A PEGADINHA DA RESPOSTA , VEJA SE É UMA COLLECTION(ARRAY)
 		$user = Auth::user();
@@ -47,11 +40,31 @@ class UserController extends Controller
 		if($user->isAdmin())
 		{
 			$users = User::all();
-			//return view('eloquent.index',compact('users'));
 		}else{
 			$users = User::where('id',Auth::user()->id)->get();
 		}
 		
 		return view('user.userList',compact('users'));
+	}
+
+	public function delete($id)
+	{
+		User::destroy($id);
+		//$user = User::find($id);
+		//$user->delete();
+		return redirect()->back();
+	}
+
+	public function update($id)
+	{
+		$user = User::find($id);
+		return view('user.userUpdate',compact('user'));
+	}
+
+	public function updateStore($id,Request $request)
+	{
+		$user = User::find($id);
+		$this->validate($request,User::$rules);
+		//verificar se as rules estao rodando...
 	}
 }

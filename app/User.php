@@ -40,10 +40,12 @@ class User extends Authenticatable
     }
 
     public static $rules = [
-        'name' => 'required|min:3|max:45|string',
-        'email' => 'required|max:100|email|unique:users',
-        'password' => 'required|max:100|min:4|string|confirmed'
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed'
     ];
+
+
 
     public function getAccounts()
     {
