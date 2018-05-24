@@ -63,8 +63,13 @@ class UserController extends Controller
 
 	public function updateStore($id,Request $request)
 	{
+		
 		$user = User::find($id);
 		$this->validate($request,User::$rules);
+		$user->name = $request->name;
+		$user->email = $request->email;
+		$user->save();
+		return redirect()->back();
 		//verificar se as rules estao rodando...
 	}
 }
