@@ -39,13 +39,15 @@ class User extends Authenticatable
     	return $password;
     }
 
-    public static $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'sometimes|required|string|min:6|confirmed'
-    ];
-
-
+    //WARNING : Look, rules is a FUNCTION , not a variable!!!
+    public static function rules($id)
+    {
+        return array(
+            'name' => 'required|string|max:255',
+            'email' => "required|string|email|max:255|unique:users,email,$id", // double quotes
+            'password' => 'required|string|min:6|confirmed'
+        );
+    }
 
     public function getAccounts()
     {

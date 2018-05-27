@@ -21,7 +21,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('user/update/{id}', 'UserController@update')->name('user.update');
     Route::post('user/update/{id}', 'UserController@updateStore')->name('user.update.store');
 
-    
 });
 
 Route::post('user/store','UserController@store')->name('user.store');

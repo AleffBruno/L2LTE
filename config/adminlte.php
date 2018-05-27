@@ -116,10 +116,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Home',
+            'url'         => 'user/list',
             'icon'        => 'file',
-            'label'       => 4,
+            'label'       => 'new',
             'label_color' => 'success',
         ],
         'ACCOUNT SETTINGS',

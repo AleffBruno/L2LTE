@@ -63,13 +63,22 @@ class UserController extends Controller
 
 	public function updateStore($id,Request $request)
 	{
-		
 		$user = User::find($id);
-		$this->validate($request,User::$rules);
+		if(is_null($request->password))
+		{
+			$request['password'] = $user->password;
+			$request['password_confirmation'] = $user->password;
+			$this->validate($request,User::rules($id));
+		}else{
+			$this->validate($request,User::rules($id));
+			$request['password'] = User::hashPassword($request->password);
+			$request['password_confirmation'] = $request['password'];
+		}
+
 		$user->name = $request->name;
 		$user->email = $request->email;
+		$user->password = $request->password;
 		$user->save();
-		return redirect()->back();
-		//verificar se as rules estao rodando...
+		return redirect()->back()->with('success','Usuario atualizado com sucesso');
 	}
 }
