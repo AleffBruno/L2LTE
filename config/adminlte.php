@@ -118,7 +118,7 @@ return [
         [
             'text'        => 'Home',
             'url'         => 'user/list',
-            'icon'        => 'file',
+            'icon'        => 'home',
             'label'       => 'new',
             'label_color' => 'success',
         ],

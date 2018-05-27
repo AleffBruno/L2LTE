@@ -16,15 +16,24 @@
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('user/list', 'UserController@list')->name('user.list');
-    Route::get('user/delete/{id}', 'UserController@delete')->name('user.delete');
-    Route::get('user/update/{id}', 'UserController@update')->name('user.update');
-    Route::post('user/update/{id}', 'UserController@updateStore')->name('user.update.store');
+    Route::group(['prefix'=>'user','as'=>'user.'],function(){
+        Route::get('list', 'UserController@list')->name('list');
+        Route::delete('delete/{id}', 'UserController@delete')->name('delete');
+        Route::get('update/{id}', 'UserController@update')->name('update');
+        Route::put('update/{id}', 'UserController@updateStore')->name('update.store');
+    });
+
+    Route::group(['prefix'=>'account'],function(){
+        Route::get('create_account','UserController@createAccount')->name('create.account');    
+    });
 
 });
 
-Route::post('user/store','UserController@store')->name('user.store');
-Route::post('user/login','UserController@login')->name('user.login');
+Route::group(['prefix'=>'user','as'=>'user.'],function(){
+    Route::post('store','UserController@store')->name('store');
+    Route::post('login','UserController@login')->name('login');
+});
+
 
 Route::get('/', function () {
     return view('welcome');

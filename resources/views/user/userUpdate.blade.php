@@ -12,6 +12,7 @@
     
     <form method="post" action="{{route('user.update.store',$user->id)}}">
 
+        @method('PUT')
         {{ csrf_field() }}
         
         <div class="form-group">
