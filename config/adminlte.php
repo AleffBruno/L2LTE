@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Lineage</b>2',
+    'logo' => '<b>L</b>2',
     //'logo' => '<img src="https://mmorpg.org.pl/system/posts/posters/000/019/141/medium/l2logo.png?1447351508" alt="Lineage" width="160" height="40">',
 
     'logo_mini' => '<b>L</b>2',
