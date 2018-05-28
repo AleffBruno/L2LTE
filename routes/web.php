@@ -23,8 +23,10 @@ Route::group(['middleware'=>'auth'],function(){
         Route::put('update/{id}', 'UserController@updateStore')->name('update.store');
     });
 
-    Route::group(['prefix'=>'account'],function(){
-        Route::get('create_account','UserController@createAccount')->name('create.account');    
+    Route::group(['prefix'=>'account','as'=>'account.'],function(){
+        Route::get('create/{id}','AccountController@createAccount')->name('create');
+        Route::post('store/{id}','AccountController@store')->name('store');
+        Route::get('list/{id}','AccountController@accountList')->name('list');
     });
 
 });

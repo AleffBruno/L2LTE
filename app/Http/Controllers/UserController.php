@@ -81,9 +81,4 @@ class UserController extends Controller
 		$user->save();
 		return redirect()->back()->with('success','Usuario atualizado com sucesso');
 	}
-
-	public function createAccount()
-	{
-		return view('account.accountCreate');
-	}
 }

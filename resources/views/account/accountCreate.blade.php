@@ -7,20 +7,36 @@
 @stop
 
 @section('content')
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+
+<form method="post" action="{{route('account.store',$id)}}">
+    @include('alerts.all_alerts')
+    {{ csrf_field() }}
+    <div class="form-group">
+        <label for="inputLogin">Login</label> 
+        <input name="login" type="text" class="form-control" id="inputLogin" aria-describedby="loginHelp" placeholder="Enter Login">
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="inputLastActive">LastActive</label> *opcional
+        <input name="lastactive" type="text" class="form-control" id="inputLastActive" placeholder="LastActive">
+    </div>
+    <!-- CAN ADMIN
+    <div class="form-group">
+        <label for="access_level">LastActive</label>
+        <input type="text" class="form-control" id="inputLastActive" placeholder="LastActive">
+    </div>
+        ENDCAN ADMIN-->
+    <div class="form-group">
+        <label for="inputLastIP">LastIP</label> *opcional
+        <input name="lastip" type="text" class="form-control" id="inputLastIP" placeholder="LastIP">
+    </div>
+    <div class="form-group">
+        <label for="inputLastServer">LastServer</label> *opcional
+        <input name="lastserver" type="text" class="form-control" id="inputLastServer" placeholder="LastServer">
+    </div>
+    <button type="submit" class="btn btn-primary">Criar</button>
 </form>
 @stop

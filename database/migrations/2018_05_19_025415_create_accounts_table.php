@@ -18,7 +18,7 @@ class CreateAccountsTable extends Migration {
 			$table->string('login', 45)->default('')->primary();
 			$table->string('password', 45)->nullable();
 			$table->decimal('lastactive', 20, 0)->nullable();
-			$table->integer('access_level')->nullable();
+			$table->integer('access_level')->nullable()->default(0);
 			$table->string('lastIP', 20)->nullable();
 			$table->integer('lastServer')->nullable()->default(1);
 		});

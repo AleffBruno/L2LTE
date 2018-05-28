@@ -16,6 +16,7 @@
             <th>Deletar</th>
             <th>Atualizar</th>
             <th>Criar Account</th>
+            <th>Ver Accounts</th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +35,8 @@
                 </form>
             </th>
             <th><a href="{{route('user.update',$user->id)}}" class="btn btn-warning"><i class="fa fa-wrench"></i></a></th>
-            <th><a href="{{route('user.update',$user->id)}}" class="btn btn-primary"><i class="fa fa-address-card"></i></a></th>
+            <th><a href="{{route('account.create',$user->id)}}" class="btn btn-primary"><i class="fa fa-address-card"></i></a></th>
+            <th><a href="{{route('account.list',$user->id)}}" class="btn btn-success"><i class="fa fa-eye"></i></a></th>
         </tr>
     @endforeach
     </tbody>
