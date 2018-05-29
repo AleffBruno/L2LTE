@@ -22,7 +22,8 @@ class Account extends Model
         if($action == 'create')
         {
             $rules = array(
-                'login' => "required|unique:accounts"
+                'login' => "required|unique:accounts",
+                'password' => "required"
             );
         }
         if($action == 'update')

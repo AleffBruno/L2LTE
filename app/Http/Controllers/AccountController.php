@@ -34,4 +34,10 @@ class AccountController extends Controller
         $accounts = $user->getAccounts;
         return view('account.accountList',compact('accounts'));
     }
+
+    public function delete($login)
+    {
+        Account::destroy($login);
+        return redirect()->back();
+    }
 }

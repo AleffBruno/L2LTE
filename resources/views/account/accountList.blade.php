@@ -7,27 +7,31 @@
 @stop
 
 @section('content')
-    @foreach($accounts as $account)
-    @endforeach
+    
     <table id="myTable" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th> 
-            <th>Age</th>
+            <th>Login</th>
+            <th>Deletar</th>
+            <th>Atualizar</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($accounts as $account)
         <tr>
-            <td>Jill</td>
-            <td>Smith</td> 
-            <td>50</td>
+            <td>{{$account->login}}</td>
+            <td>
+                <form method="post" action="{{route('account.delete',$account->login)}}">
+                    @method('DELETE')
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </button>
+                </form>
+            </td>            
+            <td>#</td>
         </tr>
-        <tr>
-            <td>Eve</td>
-            <td>Jackson</td> 
-            <td>94</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 @stop
@@ -35,17 +39,15 @@
 @section('js')
 <script>
 $(document).ready( function () {
-    $('#myTable').DataTable(
-        {
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    }
-    );
-} );
+    $('#myTable').DataTable({
+        "paging": false,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": false,
+        "autoWidth": false
+    });
+});
 </script>
 @stop
 
