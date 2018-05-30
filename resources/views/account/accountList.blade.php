@@ -29,7 +29,7 @@
                     </button>
                 </form>
             </td>            
-            <td>#</td>
+            <td><a class="btn btn-warning" href="{{route('account.update',$account->login)}}"><i class="fa fa-wrench"></a></td>
         </tr>
         @endforeach
         </tbody>

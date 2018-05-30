@@ -40,4 +40,10 @@ class AccountController extends Controller
         Account::destroy($login);
         return redirect()->back();
     }
+
+    public function update($login)
+    {
+        $account = Account::find($login);
+        return view('account.accountUpdate',compact('account'));
+    }
 }
