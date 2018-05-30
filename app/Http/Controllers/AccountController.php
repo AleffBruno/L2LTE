@@ -46,4 +46,11 @@ class AccountController extends Controller
         $account = Account::find($login);
         return view('account.accountUpdate',compact('account'));
     }
+
+    public function updateStore($login,Request $request)
+    {
+        $account = Account::find($login);
+        $this->validate($request,Account::rules($request,'update'));
+        dd("a");
+    }
 }

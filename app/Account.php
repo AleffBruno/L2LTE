@@ -18,22 +18,24 @@ class Account extends Model
     public $timestamps = false;
 
     public static function rules($login,$action) : Array
-    {
+    {	
+        $rules = array(
+            'password' => "required|max:45",
+            'lastactive' => 'nullable|numeric',
+            'access_level' => 'nullable|integer',
+            'lastIP' => 'nullable|ip',
+            'lastServer' => 'nullable|max:4|integer'
+        ); 
+
         if($action == 'create')
         {
-            $rules = array(
-                'login' => "required|unique:accounts",
-                'password' => "required"
-            );
+            $rules['login'] = "required|min:3|max:45|string|unique:accounts";
         }
         if($action == 'update')
         {
-            $rules = array(
-                'login' => "required|unique:accounts,login,$login",
-                'password' => "required"
-            );
+            $rules['login'] = "required|unique:accounts,login,$login";
         }
-
+        //dd($rules);
         return $rules;
     }
 

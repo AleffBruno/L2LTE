@@ -9,6 +9,7 @@
 @section('content')
 <form method="post" action="#">
     @include('alerts.all_alerts')
+    @method('PUT')
     {{ csrf_field() }}
     <div class="form-group">
         <label for="inputLogin">Login</label> 

@@ -29,6 +29,7 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('list/{id}','AccountController@accountList')->name('list');
         Route::delete('delete/{login}','AccountController@delete')->name('delete');
         Route::get('update/{login}','AccountController@update')->name('update');
+        Route::put('update/{login}','AccountController@updateStore')->name('update.store');
     });
 
 });

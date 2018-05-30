@@ -40,6 +40,7 @@ class User extends Authenticatable
     }
 
     //WARNING : Look, rules is a FUNCTION , not a variable!!!
+    //this rules are only used in update, on create the are in "Auth\RegisterController"
     public static function rules($id)
     {
         return array(
