@@ -16,8 +16,12 @@
         <input name="login" type="text" class="form-control" id="inputLogin" aria-describedby="loginHelp" placeholder="Enter Login">
     </div>
     <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <label for="inputPassword">Senha</label>
+        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Senha">
+    </div>
+    <div class="form-group">
+        <label for="inputPasswordConfirm">Confirmar Senha</label>
+        <input name="password_confirmation" type="password" class="form-control" id="inputPasswordConfirm" placeholder="Confirmar Senha">
     </div>
     <div class="form-group">
         <label for="inputLastActive">LastActive</label> *opcional

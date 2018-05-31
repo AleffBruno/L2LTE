@@ -49,8 +49,24 @@ class AccountController extends Controller
 
     public function updateStore($login,Request $request)
     {
+        //se passar um LOGIN que nao existe na URL, da um erro. E.G: se o usuario atualizar
+        //e clicar em "voltar" no navegador
         $account = Account::find($login);
-        $this->validate($request,Account::rules($request,'update'));
-        dd("a");
+        if(is_null($request->password))
+		{
+			$request['password'] = $account->password;
+            $request['password_confirmation'] = $account->password;
+            $this->validate($request,Account::rules($login,'update'));
+		}else{
+            $this->validate($request,Account::rules($login,'update'));
+			$request['password'] = User::hashPassword($request->password);
+			$request['password_confirmation'] = $request['password'];
+        }
+        $account->login = $request->login;
+        $account->password = $request->password;
+        $account->save();
+        return redirect()
+            ->route('account.update',$account->login)
+            ->with('success','Account atualizada com sucesso');
     }
 }

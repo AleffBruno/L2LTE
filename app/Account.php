@@ -4,12 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Validation\Rule;
 
 class Account extends Model
 {
     protected $fillable = [
         'login','password','lastactive','lastIP','lastServer'
     ];
+
+    protected $table = "accounts";
 
     protected $primaryKey = 'login'; 
 
@@ -20,7 +23,7 @@ class Account extends Model
     public static function rules($login,$action) : Array
     {	
         $rules = array(
-            'password' => "required|max:45",
+            'password' => "required|max:45|confirmed",
             'lastactive' => 'nullable|numeric',
             'access_level' => 'nullable|integer',
             'lastIP' => 'nullable|ip',
@@ -33,9 +36,12 @@ class Account extends Model
         }
         if($action == 'update')
         {
-            $rules['login'] = "required|unique:accounts,login,$login";
+            $rules['login'] = [
+                "required",
+                Rule::unique('accounts')->ignore($login,'login')
+            ];
         }
-        //dd($rules);
+
         return $rules;
     }
 
