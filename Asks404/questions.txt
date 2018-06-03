@@ -58,5 +58,6 @@ para facilitar identificar de onde elas veêm
 
 8{
 criei uma model para por as constantes dos nomes das rotas....pois estava 
-começando a ficar meio confuso e repetitivo alguns itens
+começando a ficar meio confuso e repetitivo alguns itens. Isso é elegante?
+oque leva a outra pergunta.....ate que ponto variaveis de referencia sao "um bom negocio" ?
 }

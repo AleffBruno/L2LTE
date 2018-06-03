@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Account;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -41,9 +42,11 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
+        //caution, it works on 'EVERY' authorization, some function on 'adminLTE template' can now be seen
+        // like " 'can'  => 'manage-blog' " on default settings in 'config\adminlte.php'
         Gate::before(function($user)
         {
-            if(!$user->isAdmin())
+            if($user->isAdmin())
             {
                 return true;
             }
