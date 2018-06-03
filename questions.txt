@@ -1,0 +1,57 @@
+1{
+é recomendado usar a mesma tela que cria para ser a tela de update?
+pois quando se alterar um input , tera que se alterar nas 2 telas...
+o correto nao seria usar um "componente" e usar a referencia desse componente nas telas?
+}
+
+2{
+Porque usar get e set? isso ajudaria a um programador novo que entrou no projeto "hoje"
+a saber os nomes dos atributos que estao no banco? qual o sentido?
+por exemplo : ao chamar o atributo "name" de accounts
+    $account->name <<< funciona / leva-se em consideração que eu sei o nome do atributo
+    $account->getName() <<< funciona / mas pq fazer isso? organização?
+}
+
+3{
+Em uma view eu faço verificações(isAdmin) em varios locais para mostrar um campo/input
+se esse mesmo campo apareçe em diversas views, isso nao se encaixaria na duvida 1?
+fora isso, isso é elegante? varias verificações na view para mostrar determinadas "coisas"
+>>view ex : accountList.blade.php
+}
+
+4{
+2 verificações identicas para atualizar um determinado campo, fiz um metodo
+para evitar duplicidade.
+No caso aqui, é pra aceitar a requisoção que tem "access_level" se for admin.
+Nome da funcao "validationInputAccessLevel" em Account model
+Bonus:
+uma coisa estranha.....se eu por no parametro da funcao "validationInputAccessLevel"
+um objeto do tipo 'Request' e passar o '$request' da controller, ele nao aceita,
+e outra coisa...a funcao "validationInputAccessLevel", nao retorna nada e atualiza
+a 'account', nao era pra ter um 'return $account" ?
+Bonus 2:
+Estou verificando "$request->access_level", mas tem momentos que nem vem
+na controller, por exemplo, se o cara for USER,isso algum dia pode quebrar? 
+}
+
+5{
+Como accounts nao tem ID, e seu identificador e "login", quando se usa um update
+no login e tenta voltar para a view com a "setinha" do navegador, da um erro
+pois esta tentando voltar para algo que nao existe
+>> Exemplo 
+    Antes de atualizar o login : http://laravel.test/account/update/ac_acc1
+    Depois de atualizar o login : http://laravel.test/account/update/ac_acc2
+se o usuario clicar na "setinha" do navegador, ele vai voltar para o primeiro caso
+e vai da erro
+}
+
+6{
+Eu faço 2 verificações MUITO parecidas, porem elas sao distintas,
+uma em 'UserController@updateStore' e a outra em 'AccountController@updateStore',
+é pra verificar se o password é null. como resolver?
+}
+
+7{
+Variaveis passadas para views estao sendo comentadas no inicio da view
+para facilitar identificar de onde elas veêm
+}

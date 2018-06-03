@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Account;
 use App\User;
+use App\Models\SystemRole;
 
 class AccountController extends Controller
 {
@@ -24,6 +25,8 @@ class AccountController extends Controller
         $account->lastactive = $request->lastactive;
         $account->lastIP = $request->lastIP;
         $account->lastServer = $request->lastServer;
+        //waiting a function "acceptInputAccessLevel"
+        $account->validationInputAccessLevel($account,$request->access_level);
         $user->getAccounts()->save($account);
         return redirect()->back()->with(['success'=>'Account criada com sucesso']);
     }
@@ -64,6 +67,8 @@ class AccountController extends Controller
         }
         $account->login = $request->login;
         $account->password = $request->password;
+        $account->validationInputAccessLevel($account,$request->access_level);
+
         $account->save();
         return redirect()
             ->route('account.update',$account->login)

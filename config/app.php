@@ -163,6 +163,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        
     ],
 
     /*
@@ -177,7 +178,10 @@ return [
     */
 
     'aliases' => [
+        //customized 
+        'SystemRole' => App\Models\SystemRole::class,
 
+        //defaults
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

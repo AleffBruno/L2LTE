@@ -12,6 +12,9 @@
         <thead>
         <tr>
             <th>Login</th>
+            @if(Auth()->user()->isAdmin())
+            <th>Access Level</th>
+            @endif
             <th>Deletar</th>
             <th>Atualizar</th>
         </tr>
@@ -20,6 +23,9 @@
         @foreach($accounts as $account)
         <tr>
             <td>{{$account->login}}</td>
+            @if(Auth()->user()->isAdmin())
+            <td>{{$account->access_level}}</td>
+            @endif
             <td>
                 <form method="post" action="{{route('account.delete',$account->login)}}">
                     @method('DELETE')
