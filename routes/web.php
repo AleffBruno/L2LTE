@@ -11,19 +11,32 @@
 |
 */
 
-
-
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>RouteVariables::auth],function(){
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::group(['prefix'=>'user','as'=>'user.'],function(){
-        Route::get('list', 'UserController@list')->name('list');
-        Route::delete('delete/{id}', 'UserController@delete')->name('delete');
-        Route::get('update/{id}', 'UserController@update')->name('update');
-        Route::put('update/{id}', 'UserController@updateStore')->name('update.store');
+    Route::group(['can:actionsThatRequireUserId,id'],function(){
+
+
+
+        
+
+
+
     });
 
-    Route::group(['prefix'=>'account','as'=>'account.'],function(){
+
+    Route::group(['prefix'=>RouteVariables::user,'as'=>RouteVariables::user.'.'],function(){
+        Route::get('list', 'UserController@list')->name('list');
+
+        Route::group(['middleware'=>'can:actionsThatRequireUserId,id'],function(){
+            Route::delete('delete/{id}', 'UserController@delete')->name('delete');
+            Route::get('update/{id}', 'UserController@update')->name('update');
+            Route::put('update/{id}', 'UserController@updateStore')->name('update.store');
+        });
+    });
+
+
+    Route::group(['prefix'=>RouteVariables::account,'as'=>RouteVariables::account.'.'],function(){
         Route::get('create/{id}','AccountController@createAccount')->name('create');
         Route::post('store/{id}','AccountController@store')->name('store');
         Route::get('list/{id}','AccountController@accountList')->name('list');
@@ -34,7 +47,7 @@ Route::group(['middleware'=>'auth'],function(){
 
 });
 
-Route::group(['prefix'=>'user','as'=>'user.'],function(){
+Route::group(['prefix'=>RouteVariables::user,'as'=>RouteVariables::user.'.'],function(){
     Route::post('store','UserController@store')->name('store');
     Route::post('login','UserController@login')->name('login');
 });

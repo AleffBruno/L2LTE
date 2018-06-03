@@ -49,7 +49,7 @@ class Account extends Model
 
     public function getUser()
     {
-        return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class,'user_fk');
     }
 
     public function validationInputAccessLevel(Account $account,$accessLevel)

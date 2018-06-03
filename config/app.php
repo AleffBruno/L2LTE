@@ -180,6 +180,7 @@ return [
     'aliases' => [
         //customized 
         'SystemRole' => App\Models\SystemRole::class,
+        'RouteVariables' => App\Models\RouteVariables::class,
 
         //defaults
         'App' => Illuminate\Support\Facades\App::class,

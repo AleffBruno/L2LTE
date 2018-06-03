@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Gate;
+use App\Account;
 
 class UserController extends Controller
 {
@@ -57,6 +59,12 @@ class UserController extends Controller
 
 	public function update($id)
 	{
+		/* if(Gate::denies('userAction',$id))
+		{
+			return abort(403, 'Unauthorized action.');
+		}
+
+		dd("pode"); */
 		$user = User::find($id);
 		return view('user.userUpdate',compact('user'));
 	}

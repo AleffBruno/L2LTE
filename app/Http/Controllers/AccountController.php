@@ -9,6 +9,13 @@ use App\Models\SystemRole;
 
 class AccountController extends Controller
 {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     public function createAccount($id)
 	{
 		return view('account.accountCreate',compact('id'));
@@ -17,7 +24,8 @@ class AccountController extends Controller
     //$id is the idUserRefecenre to create an account children
     public function store($id,Request $request)
     {
-        $user = User::find($id);
+        //$user = User::find($id);
+        $user = $this->user->find($id);
         $account = new Account();
         $this->validate($request,Account::rules($request->login,'create'));
         $account->login = $request->login;
@@ -33,7 +41,8 @@ class AccountController extends Controller
 
     public function accountList($id)
     {
-        $user = User::find($id);
+        //$user = User::find($id);
+        $user = $this->user->find($id);
         $accounts = $user->getAccounts;
         return view('account.accountList',compact('accounts'));
     }

@@ -55,3 +55,8 @@ uma em 'UserController@updateStore' e a outra em 'AccountController@updateStore'
 Variaveis passadas para views estao sendo comentadas no inicio da view
 para facilitar identificar de onde elas veêm
 }
+
+8{
+criei uma model para por as constantes dos nomes das rotas....pois estava 
+começando a ficar meio confuso e repetitivo alguns itens
+}
