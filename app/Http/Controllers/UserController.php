@@ -10,40 +10,50 @@ use App\Account;
 
 class UserController extends Controller
 {
-	/* protected $user;
-	public function __costruct(User $user)
+	protected $user;
+	public function __construct(User $user)
 	{
 		$this->user = $user;
-	} */
+	}
 
     public function login(Request $request)
     {
-        $user = User::where('email', $request['email'])
-		->where('password', User::hashPassword($request['password']))
+		$user = $this->user->where('email', $request['email'])
+		->where('password', $this->user->hashPassword($request['password']))
 		->first();
+
 		if($user==null)
 		{
 			return \Redirect::back()->withInput()->withErrors(
 				array(
-					'notMatch'=>[User::$feedBackMessages['notMatch']]
+					'notMatch'=>[$this->user->feedBackMessages['notMatch']]
 					 )
 			);
 		}
 		// perhaps needs study "guard"
-		Auth::login($user);
+		auth()->login($user);
 		return redirect()->route('user.list');
     }
 	
 	public function list()
 	{
 		// ATENTE-SE A PEGADINHA DA RESPOSTA , VEJA SE É UMA COLLECTION(ARRAY)
-		$user = Auth::user();
+		//$user = auth()->user();
+		$user = User::find(8);
+		dd($user->email);
+		$user = new User();
+		$user->name= "named";
+		$user->email="NAMED";
+		$user->password="named";
+		$user->save();
+		die();
+		dd($user->email);
 		
 		if($user->isAdmin())
 		{
-			$users = User::all();
+			$users = $this->user->all();
 		}else{
-			$users = User::where('id',Auth::user()->id)->get();
+			$users = $this->user->where('id',auth()->user()->id)->get();
 		}
 		
 		return view('user.userList',compact('users'));
@@ -51,7 +61,7 @@ class UserController extends Controller
 
 	public function delete($id)
 	{
-		User::destroy($id);
+		$this->user->destroy($id);
 		//$user = User::find($id);
 		//$user->delete();
 		return redirect()->back();
@@ -65,21 +75,21 @@ class UserController extends Controller
 		}
 
 		dd("pode"); */
-		$user = User::find($id);
+		$user = $this->user->find($id);
 		return view('user.userUpdate',compact('user'));
 	}
 
 	public function updateStore($id,Request $request)
 	{
-		$user = User::find($id);
+		$user = $this->user->find($id);
 		if(is_null($request->password))
 		{
 			$request['password'] = $user->password;
 			$request['password_confirmation'] = $user->password;
-			$this->validate($request,User::rules($id));
+			$this->validate($request,$this->user->rules($id));
 		}else{
-			$this->validate($request,User::rules($id));
-			$request['password'] = User::hashPassword($request->password);
+			$this->validate($request,$this->user->rules($id));
+			$request['password'] = $this->user->hashPassword($request->password);
 			$request['password_confirmation'] = $request['password'];
 		}
 

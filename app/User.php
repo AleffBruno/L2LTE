@@ -11,7 +11,7 @@ class User extends Authenticatable
     
     public $timestamps = false;
 
-    public static $feedBackMessages = [
+    public $feedBackMessages = [
         'notMatch' => 'Email ou Senha estão incorretos',   
     ];
 
@@ -68,5 +68,15 @@ class User extends Authenticatable
     		}
     	}
     	return false;
-    }    
+    }   
+    
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    public function getEmailAttribute($value)
+    {
+        return ucwords($value);
+    }
 }
