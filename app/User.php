@@ -8,7 +8,47 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+
+    //attributes
+    protected $id =         'id';
+    protected $email =      'email';
+    protected $password =   'password';
+    protected $emanameil =  'name';
+    protected $credits =    'credits';
+    protected $lang_fk =    'lang_fk';
+
+    //laravel mutatores(getters and setters)
+    public function setEmailAttribute($value)
+    {
+        $this->attributes[$this->email] = $value;
+    }
+
+    public function getEmailAttribute($value)
+    {
+        return $value;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes[$this->password] = $value;
+    }
+
+    public function getPasswordAttribute($value)
+    {
+        return $value;
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes[$this->name] = $value;
+    }
+
+    public function getNameAttribute($value)
+    {
+        return $value;
+    }
     
+
     public $timestamps = false;
 
     public $feedBackMessages = [
@@ -70,13 +110,8 @@ class User extends Authenticatable
     	return false;
     }   
     
-    public function setEmailAttribute($value)
+    /* public function getAllInfo()
     {
-        $this->attributes['email'] = strtolower($value);
-    }
-
-    public function getEmailAttribute($value)
-    {
-        return ucwords($value);
-    }
+        return $this->attributes['email'].' '.$this->attributes['password'];
+    } */
 }

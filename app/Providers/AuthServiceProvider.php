@@ -34,9 +34,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('actionsThatRequireAccountLogin',function($user,$login)
         {
             $account = Account::find($login);
-            if($user->id == $account->getUser->id)
+            if(!is_null($account))
             {
-                return true;
+                return $user->id == $account->getUser->id;
+                //return true;
             }
 
             return false;

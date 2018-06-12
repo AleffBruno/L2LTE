@@ -38,8 +38,13 @@ class UserController extends Controller
 	public function list()
 	{
 		// ATENTE-SE A PEGADINHA DA RESPOSTA , VEJA SE É UMA COLLECTION(ARRAY)
-		//$user = auth()->user();
-		$user = User::find(8);
+		$user = User::find(1);
+		
+		//$user = new User();
+		
+		dd($user->getAllInfo());
+		dd($user->getAttributes());
+		$user->email="NAMED";
 		dd($user->email);
 		$user = new User();
 		$user->name= "named";
@@ -48,7 +53,9 @@ class UserController extends Controller
 		$user->save();
 		die();
 		dd($user->email);
-		
+
+
+		$user = auth()->user();
 		if($user->isAdmin())
 		{
 			$users = $this->user->all();
