@@ -9,15 +9,19 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    //attributes
+    /* 
+    * WARNING !!!
+    * These attributes are only to know which columns the database have and
+    * help to build the MUTATORS(gettings and setters)
+    */
     protected $id =         'id';
     protected $email =      'email';
     protected $password =   'password';
-    protected $emanameil =  'name';
+    protected $name =       'name';
     protected $credits =    'credits';
     protected $lang_fk =    'lang_fk';
 
-    //laravel mutatores(getters and setters)
+    //START laravel mutators(getters and setters)
     public function setEmailAttribute($value)
     {
         $this->attributes[$this->email] = $value;
@@ -47,7 +51,27 @@ class User extends Authenticatable
     {
         return $value;
     }
-    
+
+    public function setCreditsAttribute($value)
+    {
+        $this->attributes[$this->credits] = $value;
+    }
+
+    public function getCreditsAttribute($value)
+    {
+        return $value;
+    }
+
+    public function setLangFkAttribute($value)
+    {
+        $this->attributes[$this->lang_fk] = $value;
+    }
+
+    public function getLangFkAttribute($value)
+    {
+        return $value."TR";
+    }
+    //END laravel mutators(getters and setters)
 
     public $timestamps = false;
 

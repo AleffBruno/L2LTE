@@ -38,23 +38,6 @@ class UserController extends Controller
 	public function list()
 	{
 		// ATENTE-SE A PEGADINHA DA RESPOSTA , VEJA SE É UMA COLLECTION(ARRAY)
-		$user = User::find(1);
-		
-		//$user = new User();
-		
-		dd($user->getAllInfo());
-		dd($user->getAttributes());
-		$user->email="NAMED";
-		dd($user->email);
-		$user = new User();
-		$user->name= "named";
-		$user->email="NAMED";
-		$user->password="named";
-		$user->save();
-		die();
-		dd($user->email);
-
-
 		$user = auth()->user();
 		if($user->isAdmin())
 		{
