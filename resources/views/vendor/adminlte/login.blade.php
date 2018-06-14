@@ -16,6 +16,9 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
+
+            @include('alerts.all_alerts')
+
             @if($errors->has('notMatch'))
             <div class="alert alert-danger">
                 <strong>{{$errors->first('notMatch')}}</strong>

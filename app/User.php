@@ -14,17 +14,17 @@ class User extends Authenticatable
     * These attributes are only to know which columns the database have and
     * help to build the MUTATORS(gettings and setters)
     */
-    protected $id =         'id';
-    protected $email =      'email';
-    protected $password =   'password';
-    protected $name =       'name';
-    protected $credits =    'credits';
-    protected $lang_fk =    'lang_fk';
+    protected $_id =         'id';
+    protected $_email =      'email';
+    protected $_password =   'password';
+    protected $_name =       'name';
+    protected $_credits =    'credits';
+    protected $_lang_fk =    'lang_fk';
 
     //START laravel mutators(getters and setters)
     public function setEmailAttribute($value)
     {
-        $this->attributes[$this->email] = $value;
+        $this->attributes['email'] = $value;
     }
 
     public function getEmailAttribute($value)
@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($value)
     {
-        $this->attributes[$this->password] = $value;
+        $this->attributes['password'] = $value;
     }
 
     public function getPasswordAttribute($value)
@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function setNameAttribute($value)
     {
-        $this->attributes[$this->name] = $value;
+        $this->attributes['name'] = $value;
     }
 
     public function getNameAttribute($value)
@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function setCreditsAttribute($value)
     {
-        $this->attributes[$this->credits] = $value;
+        $this->attributes['credits'] = $value;
     }
 
     public function getCreditsAttribute($value)
@@ -64,12 +64,12 @@ class User extends Authenticatable
 
     public function setLangFkAttribute($value)
     {
-        $this->attributes[$this->lang_fk] = $value;
+        $this->attributes['lang_fk'] = $value;
     }
 
     public function getLangFkAttribute($value)
     {
-        return $value."TR";
+        return $value."MUTATORS";
     }
     //END laravel mutators(getters and setters)
 

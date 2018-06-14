@@ -31,7 +31,8 @@ class UserController extends Controller
 			);
 		}
 		// perhaps needs study "guard"
-		auth()->login($user);
+		//auth()->login($user);
+		auth()->loginUsingId($user->id);
 		return redirect()->route('user.list');
     }
 	
