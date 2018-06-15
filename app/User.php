@@ -11,15 +11,14 @@ class User extends Authenticatable
 
     /* 
     * WARNING !!!
-    * These attributes are only to know which columns the database have and
-    * help to build the MUTATORS(gettings and setters)
+    * These attributes are only to know which columns the database have
     */
-    protected $_id =         'id';
-    protected $_email =      'email';
-    protected $_password =   'password';
-    protected $_name =       'name';
-    protected $_credits =    'credits';
-    protected $_lang_fk =    'lang_fk';
+    private $_id;
+    private $_email;
+    private $_password;
+    private $_name;
+    private $_credits;
+    private $_lang_fk;
 
     //START laravel mutators(getters and setters)
     public function setEmailAttribute($value)

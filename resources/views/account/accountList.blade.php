@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-    
     <table id="myTable" class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -24,7 +23,13 @@
         <tr>
             <td>{{$account->login}}</td>
             @if(Auth()->user()->isAdmin())
-            <td>{{$account->access_level}}</td>
+            <td>
+            @foreach(SystemRole::ROLES as $key => $role)
+                @if($account->access_level == $role)
+                    {{$key}}
+                @endif
+            @endforeach
+            </td>
             @endif
             <td>
                 <form method="post" action="{{route('account.delete',$account->login)}}">
