@@ -14,6 +14,9 @@
 //must be logged/authenticated
 Route::group(['middleware'=>RouteVariables::auth],function(){
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('user/bonus', 'UserController@bonus')->name('bonus');
+    Route::post('user/bonusstore', 'UserController@bonusStore')->name('bonus.store');
+
 
     //user
     Route::group(['prefix'=>RouteVariables::user,'as'=>RouteVariables::user.'.'],function(){

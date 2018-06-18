@@ -7,6 +7,7 @@ use App\Account;
 use App\User;
 use App\Models\SystemRole;
 
+
 class AccountController extends Controller
 {
     protected $user;
@@ -64,16 +65,16 @@ class AccountController extends Controller
         //se passar um LOGIN que nao existe na URL, da um erro. E.G: se o usuario atualizar
         //e clicar em "voltar" no navegador
         $account = Account::find($login);
-        if(is_null($request->password))
-		{
-			$request['password'] = $account->password;
-            $request['password_confirmation'] = $account->password;
-            $this->validate($request,Account::rules($login,'update'));
-		}else{
-            $this->validate($request,Account::rules($login,'update'));
-			$request['password'] = User::hashPassword($request->password);
-			$request['password_confirmation'] = $request['password'];
-        }
+            if(is_null($request->password))
+            {
+                $request['password'] = $account->password;
+                $request['password_confirmation'] = $account->password;
+                $this->validate($request,Account::rules($login,'update'));
+            }else{
+                $this->validate($request,Account::rules($login,'update'));
+                $request['password'] = User::hashPassword($request->password);
+                $request['password_confirmation'] = $request['password'];
+            }
         $account->login = $request->login;
         $account->password = $request->password;
         $account->validationInputAccessLevel($account,$request->access_level);
@@ -83,4 +84,6 @@ class AccountController extends Controller
             ->route('account.update',$account->login)
             ->with('success','Account atualizada com sucesso');
     }
+
+    
 }

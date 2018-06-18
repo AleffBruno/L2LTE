@@ -115,6 +115,12 @@ return [
             'icon'        => 'home',
             'label'       => 'new',
             'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Bonus',
+            'url'         => 'user/bonus',
+            'icon'        => 'star',
+            'label_color' => 'success',
         ]
     ],
 

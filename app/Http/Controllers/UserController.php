@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use Gate;
 use App\Account;
+use DB;
 
 class UserController extends Controller
 {
@@ -90,4 +91,37 @@ class UserController extends Controller
 		$user->save();
 		return redirect()->back()->with('success','Usuario atualizado com sucesso');
 	}
+
+	public function bonus()
+    {
+        $users = User::all();
+        return view('bonus',compact('users'));
+    }
+
+	public function bonusStore(Request $request)
+    {
+        DB::beginTransaction();
+        for($i = 0;$i<=count($request->id)-1;$i++)
+            {
+                $user = $this->user->find($request->id[$i]);
+
+                $iRequest = new Request();
+                $iRequest['name'] = $request->name[$i];
+                $iRequest['email'] = $request->email[$i];
+                $iRequest['password'] = $user->password;
+                $iRequest['password_confirmation'] = $iRequest->password;
+
+                $iRequest->validate(
+                    $this->user->rules($user->id),
+                    ['unique'=>'o email '.$iRequest->email.' ja está em uso']
+                );
+
+                $user->name = $iRequest->name;
+                $user->email = $iRequest->email;
+                $user->save();
+            }
+        DB::commit();
+        
+        return redirect()->back();
+    }
 }
